@@ -1,0 +1,5 @@
+FROM https://developer.download.nvidia.com/embedded/L4T/r32_Release_v6.1/Jeston_Nano/jetson-nano-jp46-sd-card-image.zip 1
+
+# INPLACE BirdAtEdge.img 1
+
+RUN echo "Hello Bird@Edge"

@@ -1,0 +1,11 @@
+version: '3'
+services:
+    pimod:
+        image: nature40/pimod:latest
+        privileged: true
+        tty: true
+        volumes:
+            - .:/BirdAtEdge-OS
+        working_dir: /BirdAtEdge-OS
+        environment:
+            - IMG
