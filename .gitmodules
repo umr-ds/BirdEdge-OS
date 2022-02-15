@@ -1,0 +1,3 @@
+[submodule "home/pi/BirdEdge"]
+	path = home/pi/BirdEdge
+	url = git@github.com:umr-ds/BirdEdge.git
