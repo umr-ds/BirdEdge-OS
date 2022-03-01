@@ -3,12 +3,19 @@ PUMP 2000M
 
 #INPLACE BirdAtEdge.img 1
 
-# Install dependencies
-RUN apt-get update
-RUN apt-get install -y libjson-glib-dev libgstrtspserver-1.0-dev gstreamer1.0-rtsp
+Install dependencies
+RUN bash -c "apt-get update; exit 0"    # exit 0 to ignore update errors, which happen frequently
+RUN apt-get install -y \
+    libjson-glib-dev \
+    libgstrtspserver-1.0-dev \
+    gstreamer1.0-rtsp \
+    wget
 
-# Install deepstream
-RUN wget https://developer.download.nvidia.com/assets/Deepstream/DeepStream_6.0/deepstream-6.0_6.0.0-1_arm64.deb
+# Download deepstream to host, if not already present
+HOST bash -c "if [ ! -f deepstream-6.0_6.0.0-1_arm64.deb ]; then wget https://developer.download.nvidia.com/assets/Deepstream/DeepStream_6.0/deepstream-6.0_6.0.0-1_arm64.deb; fi"
+
+# Copy deepstream to image and install
+INSTALL deepstream-6.0_6.0.0-1_arm64.deb deepstream-6.0_6.0.0-1_arm64.deb
 RUN dpkg -i deepstream-6.0_6.0.0-1_arm64.deb
 RUN rm deepstream-6.0_6.0.0-1_arm64.deb
 
