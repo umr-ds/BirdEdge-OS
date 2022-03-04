@@ -1,0 +1,13 @@
+INPLACE BirdAtEdge-Nano-2GB.img
+
+# Compile birdedge
+INSTALL root /root
+WORKDIR /root/BirdEdge
+ENV LD_LIBRARY_PATH "/usr/lib/aarch64-linux-gnu/tegra/"
+RUN make -j 4
+
+# Install config files
+INSTALL etc /etc
+
+# enable BirdEdge service
+RUN systemctl enable birdedge.service

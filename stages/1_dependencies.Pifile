@@ -1,15 +1,14 @@
-FROM https://developer.download.nvidia.com/embedded/L4T/r32_Release_v6.1/Jeston_Nano/jetson-nano-jp46-sd-card-image.zip 1
-PUMP 2000M
-
-#INPLACE BirdAtEdge.img 1
-
-Install dependencies
+# Install dependencies
 RUN bash -c "apt-get update; exit 0"    # exit 0 to ignore update errors, which happen frequently
+RUN apt-get upgrade -y
 RUN apt-get install -y \
     libjson-glib-dev \
     libgstrtspserver-1.0-dev \
     gstreamer1.0-rtsp \
     wget
+
+RUN apt-get install -y python3 python3-pip
+RUN python3 -m pip install influxdb_client zeroconf==0.37.0
 
 # Download deepstream to host, if not already present
 HOST bash -c "if [ ! -f deepstream-6.0_6.0.0-1_arm64.deb ]; then wget https://developer.download.nvidia.com/assets/Deepstream/DeepStream_6.0/deepstream-6.0_6.0.0-1_arm64.deb; fi"
@@ -18,9 +17,3 @@ HOST bash -c "if [ ! -f deepstream-6.0_6.0.0-1_arm64.deb ]; then wget https://de
 INSTALL deepstream-6.0_6.0.0-1_arm64.deb deepstream-6.0_6.0.0-1_arm64.deb
 RUN dpkg -i deepstream-6.0_6.0.0-1_arm64.deb
 RUN rm deepstream-6.0_6.0.0-1_arm64.deb
-
-# Compile birdedge
-INSTALL home /home
-WORKDIR /home/pi/BirdEdge
-ENV LD_LIBRARY_PATH "/usr/lib/aarch64-linux-gnu/tegra/"
-RUN make -j 4

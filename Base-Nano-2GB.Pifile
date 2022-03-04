@@ -1,0 +1,6 @@
+FROM https://developer.download.nvidia.com/embedded/L4T/r32_Release_v6.1/Jetson_Nano_2GB/jetson-nano-2gb-jp46-sd-card-image.zip 1
+TO BirdAtEdge-Nano-2GB.img
+
+PUMP 2000M
+
+INCLUDE stages/1_dependencies.Pifile

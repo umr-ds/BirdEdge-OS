@@ -1,0 +1,18 @@
+[Unit]
+Description=BirdEdge
+After=network.target
+
+# Reboot after more than 10 restarts in 15 minutes happened.
+# This will happen after 10 minutes at the earliest, according to service configuration.
+StartLimitBurst=10
+StartLimitIntervalSec=900s
+StartLimitAction=reboot
+
+[Service]
+WorkingDirectory=/root/BirdEdge/
+ExecStart=/bin/bash -c "python3 ./birdedged.py -vv --influx-url http://dstank.lab.ds:8086 --influx-token 'hEQcB_NbQXsGzZg-DbMr1rVZujvuERLd5NlbHtHpesLMMZ6O4ipABQ2R20RsRJDKX3OszASI25AWi_rgFHfMNA==' --influx-org tRackIT"
+Restart=always
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
