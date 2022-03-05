@@ -1,4 +1,4 @@
-INPLACE BirdAtEdge-Nano-2GB.img
+INPLACE BirdAtEdge-Nano-2GB.img 1
 
 # Compile birdedge
 INSTALL root /root
