@@ -11,3 +11,8 @@ INSTALL etc /etc
 
 # enable BirdEdge service
 RUN systemctl enable birdedge.service
+
+# disable unused services
+RUN systemctl set-default multi-user.target
+RUN systemctl disable containerd
+RUN systemctl disable docker
