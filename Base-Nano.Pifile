@@ -1,6 +1,6 @@
-FROM https://developer.download.nvidia.com/embedded/L4T/r32_Release_v6.1/Jeston_Nano/jetson-nano-jp46-sd-card-image.zip 1
-TO BirdAtEdge-Nano.img
+FROM https://developer.download.nvidia.com/embedded/L4T/r32_Release_v7.1/JP_4.6.1_b110_SD_Card/Jeston_Nano/jetson-nano-jp461-sd-card-image.zip 1
 
 PUMP 2000M
 
-INCLUDE stages/1_dependencies.Pifile
+INCLUDE stages/00_cleanup.Pifile
+INCLUDE stages/01_dependencies.Pifile

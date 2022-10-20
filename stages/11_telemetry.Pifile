@@ -1,0 +1,8 @@
+# disable unused services
+RUN systemctl set-default multi-user.target
+RUN systemctl disable containerd
+RUN systemctl disable docker
+
+# Install system reporting
+RUN apt-get install -y mosquitto mosquitto-clients
+RUN systemctl enable mosquitto.service

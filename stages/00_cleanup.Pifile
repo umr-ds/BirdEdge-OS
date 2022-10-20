@@ -1,0 +1,3 @@
+# Uninstall unused software
+RUN apt-get remove -y thunderbird libreoffice-*
+RUN apt-get purge -y gnome-shell ubuntu-wallpapers-bionic light-themes chromium-browser* ubuntu-desktop gdm3

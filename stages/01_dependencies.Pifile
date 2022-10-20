@@ -1,6 +1,5 @@
 # Install dependencies
 RUN bash -c "apt-get update; exit 0"    # exit 0 to ignore update errors, which happen frequently
-RUN apt-get upgrade -y
 RUN apt-get install -y \
     libjson-glib-dev \
     libgstrtspserver-1.0-dev \
@@ -17,3 +16,7 @@ HOST bash -c "if [ ! -f deepstream-6.0_6.0.0-1_arm64.deb ]; then wget https://de
 INSTALL deepstream-6.0_6.0.0-1_arm64.deb deepstream-6.0_6.0.0-1_arm64.deb
 RUN dpkg -i deepstream-6.0_6.0.0-1_arm64.deb
 RUN rm deepstream-6.0_6.0.0-1_arm64.deb
+
+# Remove unused packages, upgrade remaining
+RUN apt-get autoremove -y
+RUN apt-get upgrade -y

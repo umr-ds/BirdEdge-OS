@@ -10,7 +10,7 @@ StartLimitAction=reboot
 
 [Service]
 WorkingDirectory=/root/BirdEdge/
-ExecStart=/bin/bash -c "python3 ./birdedged.py -vv --influx-url http://dstank.lab.ds:8086 --influx-token 'hEQcB_NbQXsGzZg-DbMr1rVZujvuERLd5NlbHtHpesLMMZ6O4ipABQ2R20RsRJDKX3OszASI25AWi_rgFHfMNA==' --influx-org tRackIT"
+ExecStart=/bin/bash -c "python3 ./birdedged.py -vv -mv"
 Restart=always
 RestartSec=60s
 

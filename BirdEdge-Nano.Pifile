@@ -1,0 +1,7 @@
+INPLACE BirdEdge-Nano.img 1
+
+# Install config files
+INSTALL etc /etc
+
+INCLUDE stages/10_birdedge.Pifile
+INCLUDE stages/11_telemetry.Pifile
