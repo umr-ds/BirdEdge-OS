@@ -1,9 +1,20 @@
-Bird@Edge OS
----
+# Bird@Edge OS
 
-Bird@Edge OS is part of an open-source software solution for bird song recognition at the edge of the network. The OS is intendet to be ran on a Bird@Edge Station, consisting of a NVIDIA Jetson Nano, a power supply unit, a USB WiFi stick for wireless connection of Bird@Edge Mics and an LTE Stick for data exfiltration.
+Bird@Edge OS is the operating system running on Bird@Edge Stations which is based on NVIDIA Jetson Nano board. This repository holds configuration files and recipes for creating the Bird@Edge OS image.
 
-## Use Bird@Edge OS
+## Bird Song Recognition at the Edge
+
+Bird@Edge is an Edge AI system for recognizing bird species in audio recordings to support real-time biodiversity monitoring. Bird@Edge is based on embedded edge devices operating in a distributed system to enable efficient, continuous evaluation of soundscapes recorded in forests. If you are interested in our research, [read our paper](https://jonashoechst.de/assets/papers/hoechst2022birdedge.pdf) or watch the talk recorded for [Springer NETYS 2022 conference](https://www.youtube.com/watch?v=reAm4HSyQl8). 
+
+Separate repositories exist for the [machine learning approach](https://github.com/umr-ds/BirdEdge) and for the code running on [Bird@Edge Mic](https://github.com/umr-ds/BirdEdge-Mic).
+
+## Hardware
+
+Our hardware consists of an NVIDIA Jetson Nano device (both the regular and 2 GB variant), a power supply and network connectivity through WiFi and LTE.
+
+![Bird@Edge Hardware components.](misc/birdedge_hardware.png)
+
+## Building Bird@Edge OS
 
 Bird@Edge OS is built using [pimod](https://github.com/Nature40/pimod), a tool reconfiguring Single Board Computer System images with an easy, Docker-like configuration file.
 
@@ -40,7 +51,7 @@ docker-compose run --rm pimod pimod.sh --host-resolv BirdAtEdge-Nano.Pifile
 
 The resulting operating system image now needs to be written to an SD card just as it would be done with any other OS image. You may [refer to NVIDIAs manual](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write).
 
-To setup your Bird@Edge Station the reqular [Setup and First Boot](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup) procedure is required. Please use the headless mode, as the graphical interface is disabled in order to save power. 
+To setup your Bird@Edge Station the regular [Setup and First Boot](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#setup) procedure is required. Please use the headless mode, as the graphical interface is disabled in order to save power. 
 
 ### Running Bird@Edge OS
 
@@ -72,4 +83,23 @@ Mär 11 15:30:07 pollux bash[32515]: INFO:root:** INFO: <bus_callback:137>: Pipe
 Mär 11 15:30:08 pollux bash[32515]: INFO:root:** INFO: <bus_callback:123>: Pipeline running
 Mär 11 15:30:08 pollux bash[32515]: INFO:root:max_fps_dur 8.33333e+06 min_fps_dur 2e+08
 Mär 11 15:30:21 pollux bash[32515]: DEBUG:root:Publishing {'measurement': 'birdedge', 'tags': {'station': 'birdclient-f4b6.local.', 'label': 'Waldohreule'}, 'fields': {'confidence': 0.895448}, 'time': 1647009013132714000}
+```
+
+## Scientific Usage & Citation
+
+If you are using Bird@Edge in academia, we'd appreciate if you cited our [scientific research paper](https://jonashoechst.de/assets/papers/hoechst2022birdedge.pdf). Please cite as "Höchst & Bellafkir et al."
+
+> J. Höchst, H. Bellafkir, P. Lampe, M. Vogelbacher, M. Mühling, D. Schneider, K. Lindner, S. Rösner, D. G. Schabo, N. Farwig, and B. Freisleben, "Bird@Edge: Bird Species Recognition at the Edge," in *International Conference on Networked Systems (NETYS)*, 2022. DOI: [10.1007/978-3-031-17436-0_6](https://dx.doi.org/10.1007/978-3-031-17436-0_6)
+
+```bibtex
+@inproceedings{hoechst2022birdedge,
+  title = {{Bird@Edge: Bird Species Recognition at the Edge}},
+  author = {H{\"o}chst, Jonas and Bellafkir, Hicham and Lampe, Patrick and Vogelbacher, Markus and M{\"u}hling, Markus and Schneider, Daniel and Lindner, Kim and R{\"o}sner, Sascha and Schabo, Dana G. and Farwig, Nina and Freisleben, Bernd},
+  booktitle = {International Conference on Networked Systems (NETYS)},
+  year = {2022},
+  month = may,
+  organization = {Springer},
+  keywords = {Bird Species Recognition, Edge Computing, Passive Acoustic Monitoring, Biodiversity},
+  doi = {10.1007/978-3-031-17436-0_6},
+}
 ```
